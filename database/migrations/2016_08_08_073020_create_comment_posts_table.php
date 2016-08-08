@@ -15,10 +15,18 @@ class CreateCommentPostsTable extends Migration
         Schema::create('comment_posts', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->integer('post_id');
-            $table->foreign('post_id')->references('id')->on('posts')->onUpdate('cascade')->onDelete('cascade');
-            $table->int('owner_id');
-            $table->foreign('owner_id')->references('id')->on('members')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('post_id')->unsigned();
+            $table->foreign('post_id')
+                    ->references('id')
+                    ->on('posts')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+            $table->integer('owner_id')->unsigned();
+            $table->foreign('owner_id')
+                    ->references('id')
+                    ->on('members')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
             $table->string('comment');
         });
     }

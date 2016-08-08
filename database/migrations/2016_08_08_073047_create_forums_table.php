@@ -16,8 +16,12 @@ class CreateForumsTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('title');
-            $table->int('owner_id');
-            $table->foreign('owner_id')->references('id')->on('members')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('owner_id')->unsigned();
+            $table->foreign('owner_id')
+                    ->references('id')
+                    ->on('members')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
             $table->string('content');
             $table->string('img_link');
             $table->integer('rate');

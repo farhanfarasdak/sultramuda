@@ -15,10 +15,18 @@ class CreateCommentForumsTable extends Migration
         Schema::create('comment_forums', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->integer('owner_id');
-            $table->foreign('owner_id')->references('id')->on('members')->onUpdate('cascade')->onDelete('cascade');
-            $table->integer('room_forum');
-            $table->foreign('room_forum')->references('id')->on('forums')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('owner_id')->unsigned();
+            $table->foreign('owner_id')
+                    ->references('id')
+                    ->on('members')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+            $table->integer('room_forum')->unsigned();
+            $table->foreign('room_forum')
+                    ->references('id')
+                    ->on('forums')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
             $table->string('comment');
         });
     }

@@ -15,12 +15,14 @@ class CreateDataMembersTable extends Migration
         Schema::create('data_members', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->foreign('name')->references('name')->on('members')->onUpdate('cascade')->onDelete('cascade');
             $table->string('universitas');
-            $table->foreign('universitas')->references('universitas')->on('members')->onUpdate('cascade')->onDelete('cascade');
             $table->string('angkatan');
-            $table->foreign('angkatan')->references('angkatan')->on('members')->onUpdate('cascade')->onDelete('cascade');
             $table->string('email')->unique();
+            $table->foreign('email')
+                    ->references('email')
+                    ->on('members')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
         });
     }
 

@@ -16,6 +16,7 @@ class CreateMembersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('universitas');
+            $table->string('angkatan');
             $table->boolean('status');
             $table->string('email')->unique();
         });
